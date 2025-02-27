@@ -14,7 +14,7 @@
         justify-content: center;
       }
       .items {
-        transition: all .5s linear;
+        transition: all 0.5s linear;
         align-items: center;
         background-color: white;
         border-radius: 1rem;
@@ -104,17 +104,21 @@
     </style>
 
     <script>
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
+
       window.onload = async () => {
-        const text = document.getElementById('text');
-        const res = await fetch('https://api.ipify.org?format=json');
+        const text = document.getElementById("text");
+        const res = await fetch("https://api.ipify.org?format=json");
         const data = await res.json();
-        const ipText = data?.ip ? ` ${data?.ip}` : '';
+        const ipText = data?.ip ? ` ${data?.ip}` : "";
         text.innerText = `Hi${ipText}`;
 
         const newImg = new Image();
         newImg.onload = async function () {
           const indicator = document.getElementById("indicator");
-          indicator.classList.remove('hidden');
+          indicator.classList.remove("hidden");
           indicator.src = this.src;
           document.getElementById("loading").remove();
         };
