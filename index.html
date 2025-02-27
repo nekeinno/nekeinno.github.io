@@ -104,9 +104,15 @@
     </style>
 
     <script>
-      window.onload = () => {
+      window.onload = async () => {
+        const text = document.getElementById('text');
+        const res = await fetch('https://api.ipify.org?format=json');
+        const data = await res.json();
+        const ipText = data?.ip ? ` ${data?.ip}` : '';
+        text.innerText = `Hi${ipText}`;
+
         const newImg = new Image();
-        newImg.onload = function () {
+        newImg.onload = async function () {
           const indicator = document.getElementById("indicator");
           indicator.classList.remove('hidden');
           indicator.src = this.src;
@@ -118,7 +124,7 @@
   </head>
   <body>
     <div class="items">
-      <h2>Hi</h2>
+      <h2 id="text">Hi</h2>
       <img id="indicator" class="hidden" src="" />
       <div id="loading" class="lds-ellipsis">
         <div></div>
