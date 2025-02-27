@@ -108,15 +108,16 @@
         event.preventDefault()
       );
 
-      window.onload = async () => {
-        const text = document.getElementById("text");
-        const res = await fetch("https://api.ipify.org?format=json");
-        const data = await res.json();
-        const ipText = data?.ip ? ` ${data?.ip}` : "";
-        text.innerText = `Hi${ipText}`;
+      window.onload = () => {
+        fetch("https://api.ipify.org?format=json").then(async (response) => {
+          const data = await response.json();
+          const ipText = data?.ip ? ` ${data?.ip}` : "";
+          const text = document.getElementById("text");
+          text.innerText = `Hi${ipText}`;
+        });
 
         const newImg = new Image();
-        newImg.onload = async function () {
+        newImg.onload = function () {
           const indicator = document.getElementById("indicator");
           indicator.classList.remove("hidden");
           indicator.src = this.src;
