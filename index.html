@@ -112,6 +112,14 @@
         animation-fill-mode: forwards;
       }
 
+      .fade-slow {
+        opacity: 0;
+        animation-name: shownum;
+        animation-duration: 1.25s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+      }
+
       @keyframes shownum {
         from {
           opacity: 0;
@@ -160,7 +168,7 @@
     </script>
   </head>
   <body>
-    <div class="items">
+    <div class="items fade-slow">
       <h2 id="text">Hi</h2>
       <img id="indicator" class="hidden" style="opacity: 0" />
       <div id="loading" class="lds-ellipsis">
