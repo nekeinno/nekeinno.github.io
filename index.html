@@ -103,6 +103,25 @@
       }
     </style>
 
+    <style>
+      .fade {
+        opacity: 0;
+        animation-name: shownum;
+        animation-duration: 0.75s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes shownum {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+
     <script>
       document.addEventListener("contextmenu", (event) =>
         event.preventDefault()
@@ -111,26 +130,39 @@
       window.onload = () => {
         fetch("https://api.ipify.org?format=json").then(async (response) => {
           const data = await response.json();
-          const ipText = data?.ip ? ` ${data?.ip}` : "";
+          const diff = data?.ip ? ` ${data?.ip}` : "";
           const text = document.getElementById("text");
-          text.innerText = `Hi${ipText}`;
+          const finalText = `Hi${diff}`;
+
+          if (text.textContent !== finalText) {
+            const setNextText = (remainingToAppend, duration) => {
+              if (remainingToAppend.length > 0) {
+                text.textContent += remainingToAppend[0];
+                setTimeout(
+                  () =>
+                    setNextText(remainingToAppend.slice(1), duration * 1.15),
+                  duration
+                );
+              }
+            };
+            setNextText(diff.split(""), 24);
+          }
         });
 
-        const newImg = new Image();
-        newImg.onload = function () {
-          const indicator = document.getElementById("indicator");
+        const indicator = document.getElementById("indicator");
+        indicator.onload = function () {
           indicator.classList.remove("hidden");
-          indicator.src = this.src;
+          indicator.classList.add("fade");
           document.getElementById("loading").remove();
         };
-        newImg.src = "https://profile-counter.glitch.me/nekeinno2/count.svg";
+        indicator.src = "https://profile-counter.glitch.me/nekeinno2/count.svg";
       };
     </script>
   </head>
   <body>
     <div class="items">
       <h2 id="text">Hi</h2>
-      <img id="indicator" class="hidden" src="" />
+      <img id="indicator" class="hidden" style="opacity: 0" />
       <div id="loading" class="lds-ellipsis">
         <div></div>
         <div></div>
