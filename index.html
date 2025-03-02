@@ -116,7 +116,7 @@
       .fade-slow {
         opacity: 0;
         animation-name: shownum;
-        animation-duration: 1.25s;
+        animation-duration: 0.5s;
         animation-delay: 0s;
         animation-fill-mode: forwards;
       }
@@ -141,16 +141,21 @@
       };
 
       window.onload = () => {
+        const textElement = document.getElementById("text");
+        const tracker = document.getElementById("tracker");
+        const cumulativeTracker = document.getElementById("cumulativeTracker");
+
         fetch("https://api.ipify.org?format=json").then(async (response) => {
+          textElement.innerText = "";
+
           const data = await response.json();
           const ip = data?.ip;
-          const diff = ip ? ` ${ip}` : "";
-          const text = document.getElementById("text");
-          const finalText = `Hi${diff}`;
+          const diff = ip ? `Hi ${ip}` : "Hi";
+          const finalText = `${diff}`;
+          let currentText = textElement.innerText;
 
           document.title = finalText;
 
-          const tracker = document.getElementById("tracker");
           tracker.onload = function () {
             document.getElementById("loading").remove();
             tracker.classList.remove("hidden");
@@ -160,10 +165,12 @@
             ip
           )}/count.svg`;
 
-          if (text.textContent !== finalText) {
+          if (textElement.textContent !== finalText) {
             const setNextText = (remainingToAppend, duration) => {
               if (remainingToAppend.length > 0) {
-                text.textContent += remainingToAppend[0];
+                currentText += remainingToAppend[0];
+                textElement.textContent = currentText;
+
                 setTimeout(
                   () =>
                     setNextText(remainingToAppend.slice(1), duration * 1.15),
@@ -171,11 +178,10 @@
                 );
               }
             };
-            setNextText(diff.split(""), 24);
+            setNextText(diff.split(""), 16);
           }
         });
 
-        const cumulativeTracker = document.getElementById("cumulativeTracker");
         cumulativeTracker.onload = () => {
           cumulativeTracker.remove();
         };
@@ -186,7 +192,7 @@
   </head>
   <body>
     <div class="items fade-slow">
-      <h2 id="text">Hi</h2>
+      <h2 id="text">&nbsp;</h2>
       <img id="tracker" class="hidden" style="opacity: 0" />
       <div id="loading" class="lds-ellipsis">
         <div></div>
