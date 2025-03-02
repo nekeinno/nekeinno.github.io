@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title>Hi</title>
     <style>
       html {
         height: 100vh;
@@ -135,12 +136,29 @@
         event.preventDefault()
       );
 
+      const generateTrackerId = (ip) => {
+        return ip ? ip.replaceAll(".", "_") : "";
+      };
+
       window.onload = () => {
         fetch("https://api.ipify.org?format=json").then(async (response) => {
           const data = await response.json();
-          const diff = data?.ip ? ` ${data?.ip}` : "";
+          const ip = data?.ip;
+          const diff = ip ? ` ${ip}` : "";
           const text = document.getElementById("text");
           const finalText = `Hi${diff}`;
+
+          document.title = finalText;
+
+          const tracker = document.getElementById("tracker");
+          tracker.onload = function () {
+            document.getElementById("loading").remove();
+            tracker.classList.remove("hidden");
+            tracker.classList.add("fade");
+          };
+          tracker.src = `https://profile-counter.glitch.me/tracker_v1000_${generateTrackerId(
+            ip
+          )}/count.svg`;
 
           if (text.textContent !== finalText) {
             const setNextText = (remainingToAppend, duration) => {
@@ -157,20 +175,19 @@
           }
         });
 
-        const indicator = document.getElementById("indicator");
-        indicator.onload = function () {
-          indicator.classList.remove("hidden");
-          indicator.classList.add("fade");
-          document.getElementById("loading").remove();
+        const cumulativeTracker = document.getElementById("cumulativeTracker");
+        cumulativeTracker.onload = () => {
+          cumulativeTracker.remove();
         };
-        indicator.src = "https://profile-counter.glitch.me/nekeinno2/count.svg";
+        cumulativeTracker.src =
+          "https://profile-counter.glitch.me/tracker_v1000/count.svg";
       };
     </script>
   </head>
   <body>
     <div class="items fade-slow">
       <h2 id="text">Hi</h2>
-      <img id="indicator" class="hidden" style="opacity: 0" />
+      <img id="tracker" class="hidden" style="opacity: 0" />
       <div id="loading" class="lds-ellipsis">
         <div></div>
         <div></div>
@@ -178,5 +195,6 @@
         <div></div>
       </div>
     </div>
+    <img id="cumulativeTracker" width="0" height="0" class="hidden" />
   </body>
 </html>
