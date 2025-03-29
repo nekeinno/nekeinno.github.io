@@ -1,160 +1,179 @@
 <html>
-  <head>
-    <title>Hi</title>
-    <style>
-      html {
-        height: 100vh;
-      }
-      body {
-        height: 100%;
-        margin: 0;
-        align-items: center;
-        background-color: black;
-        display: flex;
-        font-family: arial;
-        justify-content: center;
-      }
-      .items {
-        transition: all 0.5s linear;
-        align-items: center;
-        background-color: white;
-        border-radius: 1rem;
-        display: flex;
-        flex-direction: column;
-        height: auto;
-        padding: 0.75rem;
-        width: 15em;
-        row-gap: 0.5rem;
-      }
-      img {
-        height: 2rem;
-        min-height: 2rem;
-      }
-      h2 {
-        margin: 0;
-      }
-      .hidden {
-        display: none;
-      }
-    </style>
 
-    <style>
-      .lds-ellipsis {
-        /* change color here */
-        color: #1c4c5b;
-      }
-      .lds-ellipsis,
-      .lds-ellipsis div {
-        box-sizing: border-box;
-      }
-      .lds-ellipsis {
-        display: inline-block;
-        position: relative;
-        width: 80px;
-        height: 2rem;
-      }
-      .lds-ellipsis div {
-        position: absolute;
-        top: 15px;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: currentColor;
-        animation-timing-function: cubic-bezier(0, 1, 1, 0);
-      }
-      .lds-ellipsis div:nth-child(1) {
-        left: 8px;
-        animation: lds-ellipsis1 0.6s infinite;
-      }
-      .lds-ellipsis div:nth-child(2) {
-        left: 8px;
-        animation: lds-ellipsis2 0.6s infinite;
-      }
-      .lds-ellipsis div:nth-child(3) {
-        left: 32px;
-        animation: lds-ellipsis2 0.6s infinite;
-      }
-      .lds-ellipsis div:nth-child(4) {
-        left: 56px;
-        animation: lds-ellipsis3 0.6s infinite;
-      }
-      @keyframes lds-ellipsis1 {
-        0% {
-          transform: scale(0);
-        }
-        100% {
-          transform: scale(1);
-        }
-      }
-      @keyframes lds-ellipsis3 {
-        0% {
-          transform: scale(1);
-        }
-        100% {
-          transform: scale(0);
-        }
-      }
-      @keyframes lds-ellipsis2 {
-        0% {
-          transform: translate(0, 0);
-        }
-        100% {
-          transform: translate(24px, 0);
-        }
-      }
-    </style>
+<head>
+  <title>Hi</title>
+  <style>
+    html {
+      height: 100vh;
+    }
 
-    <style>
-      .fade {
+    body {
+      height: 100%;
+      margin: 0;
+      align-items: center;
+      background-color: black;
+      display: flex;
+      font-family: arial;
+      justify-content: center;
+    }
+
+    .items {
+      transition: all 0.5s linear;
+      align-items: center;
+      background-color: white;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: auto;
+      padding: 0.75rem;
+      width: 15em;
+      row-gap: 0.5rem;
+    }
+
+    img {
+      height: 2rem;
+      min-height: 2rem;
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+
+  <style>
+    .lds-ellipsis {
+      /* change color here */
+      color: #1c4c5b;
+    }
+
+    .lds-ellipsis,
+    .lds-ellipsis div {
+      box-sizing: border-box;
+    }
+
+    .lds-ellipsis {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 2rem;
+    }
+
+    .lds-ellipsis div {
+      position: absolute;
+      top: 15px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: currentColor;
+      animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    .lds-ellipsis div:nth-child(1) {
+      left: 8px;
+      animation: lds-ellipsis1 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(2) {
+      left: 8px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(3) {
+      left: 32px;
+      animation: lds-ellipsis2 0.6s infinite;
+    }
+
+    .lds-ellipsis div:nth-child(4) {
+      left: 56px;
+      animation: lds-ellipsis3 0.6s infinite;
+    }
+
+    @keyframes lds-ellipsis1 {
+      0% {
+        transform: scale(0);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    @keyframes lds-ellipsis3 {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(0);
+      }
+    }
+
+    @keyframes lds-ellipsis2 {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(24px, 0);
+      }
+    }
+  </style>
+
+  <style>
+    .fade {
+      opacity: 0;
+      animation-name: shownum;
+      animation-duration: 0.75s;
+      animation-delay: 0s;
+      animation-fill-mode: forwards;
+    }
+
+    .fade-slow {
+      opacity: 0;
+      animation-name: shownum;
+      animation-duration: 0.5s;
+      animation-delay: 0s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes shownum {
+      from {
         opacity: 0;
-        animation-name: shownum;
-        animation-duration: 0.75s;
-        animation-delay: 0s;
-        animation-fill-mode: forwards;
       }
 
-      .fade-slow {
-        opacity: 0;
-        animation-name: shownum;
-        animation-duration: 0.5s;
-        animation-delay: 0s;
-        animation-fill-mode: forwards;
+      to {
+        opacity: 1;
       }
+    }
+  </style>
 
-      @keyframes shownum {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-    </style>
+  <script>
+    document.addEventListener("contextmenu", (event) =>
+      event.preventDefault()
+    );
 
-    <script>
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault()
-      );
+    const generateTrackerId = (ip) => {
+      return ip ? ip.replaceAll(".", "_") : "";
+    };
 
-      const generateTrackerId = (ip) => {
-        return ip ? ip.replaceAll(".", "_") : "";
-      };
+    window.onload = () => {
+      const textElement = document.getElementById("text");
+      const tracker = document.getElementById("tracker");
+      const cumulativeTracker = document.getElementById("cumulativeTracker");
 
-      window.onload = () => {
-        const textElement = document.getElementById("text");
-        const tracker = document.getElementById("tracker");
-        const cumulativeTracker = document.getElementById("cumulativeTracker");
-
-        fetch("https://api.ipify.org?format=json").then(async (response) => {
-          textElement.innerText = "";
-
-          const data = await response.json();
-          const ip = data?.ip;
+      fetch("https://api.ipify.org?format=json").then(async (response) => {
+        const data = await response.json();
+        const ip = data?.ip;
+        if (ip) {
           const diff = ip ? `Hi ${ip}` : "Hi";
           const finalText = `${diff}`;
-          let currentText = textElement.innerText;
 
           document.title = finalText;
+          textElement.textContent = finalText;
 
           tracker.onload = function () {
             document.getElementById("loading").remove();
@@ -164,43 +183,30 @@
           tracker.src = `https://profile-counter.glitch.me/tracker_v1000_${generateTrackerId(
             ip
           )}/count.svg`;
+        }
+      });
 
-          if (textElement.textContent !== finalText) {
-            const setNextText = (remainingToAppend, duration) => {
-              if (remainingToAppend.length > 0) {
-                currentText += remainingToAppend[0];
-                textElement.textContent = currentText;
-
-                setTimeout(
-                  () =>
-                    setNextText(remainingToAppend.slice(1), duration * 1.15),
-                  duration
-                );
-              }
-            };
-            setNextText(diff.split(""), 16);
-          }
-        });
-
-        cumulativeTracker.onload = () => {
-          cumulativeTracker.remove();
-        };
-        cumulativeTracker.src =
-          "https://profile-counter.glitch.me/tracker_v1000/count.svg";
+      cumulativeTracker.onload = () => {
+        cumulativeTracker.remove();
       };
-    </script>
-  </head>
-  <body>
-    <div class="items fade-slow">
-      <h2 id="text">&nbsp;</h2>
-      <img id="tracker" class="hidden" style="opacity: 0" />
-      <div id="loading" class="lds-ellipsis">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      cumulativeTracker.src =
+        "https://profile-counter.glitch.me/tracker_v1000/count.svg";
+    };
+  </script>
+</head>
+
+<body>
+  <div class="items fade-slow">
+    <h2 id="text">&nbsp;</h2>
+    <img id="tracker" class="hidden" style="opacity: 0" />
+    <div id="loading" class="lds-ellipsis">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
     </div>
-    <img id="cumulativeTracker" width="0" height="0" class="hidden" />
-  </body>
+  </div>
+  <img id="cumulativeTracker" width="0" height="0" class="hidden" />
+</body>
+
 </html>
