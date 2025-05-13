@@ -1,212 +1,245 @@
 <html>
-
-<head>
-  <title>Hi</title>
-  <style>
-    html {
-      height: 100vh;
-    }
-
-    body {
-      height: 100%;
-      margin: 0;
-      align-items: center;
-      background-color: black;
-      display: flex;
-      font-family: arial;
-      justify-content: center;
-    }
-
-    .items {
-      transition: all 0.5s linear;
-      align-items: center;
-      background-color: white;
-      border-radius: 1rem;
-      display: flex;
-      flex-direction: column;
-      height: auto;
-      padding: 0.75rem;
-      width: 15em;
-      row-gap: 0.5rem;
-    }
-
-    img {
-      height: 2rem;
-      min-height: 2rem;
-    }
-
-    h2 {
-      margin: 0;
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
-
-  <style>
-    .lds-ellipsis {
-      /* change color here */
-      color: #1c4c5b;
-    }
-
-    .lds-ellipsis,
-    .lds-ellipsis div {
-      box-sizing: border-box;
-    }
-
-    .lds-ellipsis {
-      display: inline-block;
-      position: relative;
-      width: 80px;
-      height: 2rem;
-    }
-
-    .lds-ellipsis div {
-      position: absolute;
-      top: 15px;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: currentColor;
-      animation-timing-function: cubic-bezier(0, 1, 1, 0);
-    }
-
-    .lds-ellipsis div:nth-child(1) {
-      left: 8px;
-      animation: lds-ellipsis1 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(2) {
-      left: 8px;
-      animation: lds-ellipsis2 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(3) {
-      left: 32px;
-      animation: lds-ellipsis2 0.6s infinite;
-    }
-
-    .lds-ellipsis div:nth-child(4) {
-      left: 56px;
-      animation: lds-ellipsis3 0.6s infinite;
-    }
-
-    @keyframes lds-ellipsis1 {
-      0% {
-        transform: scale(0);
+  <head>
+    <title>Kyle Saburao</title>
+    <style>
+      html {
+        height: 100vh;
       }
 
-      100% {
-        transform: scale(1);
+      body {
+        height: 100%;
+        margin: 0;
+        align-items: center;
+        background-color: black;
+        display: flex;
+        font-family: arial;
+        justify-content: center;
       }
-    }
-
-    @keyframes lds-ellipsis3 {
-      0% {
-        transform: scale(1);
-      }
-
-      100% {
-        transform: scale(0);
-      }
-    }
-
-    @keyframes lds-ellipsis2 {
-      0% {
-        transform: translate(0, 0);
+      
+      .no-select {
+        -webkit-user-select: none;
+        user-select: none;
       }
 
-      100% {
-        transform: translate(24px, 0);
+      .items {
+        transition: all 0.5s linear;
+        align-items: center;
+        background-color: white;
+        border-radius: 1rem;
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        padding: 0.75rem;
+        width: 15em;
+        row-gap: 0.5rem;
       }
-    }
-  </style>
 
-  <style>
-    .fade {
-      opacity: 0;
-      animation-name: shownum;
-      animation-duration: 0.75s;
-      animation-delay: 0s;
-      animation-fill-mode: forwards;
-    }
+      img {
+        height: 2rem;
+        min-height: 2rem;
+      }
 
-    .fade-slow {
-      opacity: 0;
-      animation-name: shownum;
-      animation-duration: 0.5s;
-      animation-delay: 0s;
-      animation-fill-mode: forwards;
-    }
+      h2 {
+        margin: 0;
+      }
 
-    @keyframes shownum {
-      from {
+      .hidden {
+        display: none;
+      }
+
+      .hidden2 {
         opacity: 0;
       }
+    </style>
 
-      to {
-        opacity: 1;
+    <style>
+      .lds-ellipsis {
+        /* change color here */
+        color: #1c4c5b;
       }
-    }
-  </style>
 
-  <script>
-    document.addEventListener("contextmenu", (event) =>
-      event.preventDefault()
-    );
+      .lds-ellipsis,
+      .lds-ellipsis div {
+        box-sizing: border-box;
+      }
 
-    const generateTrackerId = (ip) => {
-      return ip ? ip.replaceAll(".", "_") : "";
-    };
+      .lds-ellipsis {
+        display: inline-block;
+        position: relative;
+        width: 80px;
+        height: 2rem;
+      }
 
-    window.onload = () => {
-      const textElement = document.getElementById("text");
-      const tracker = document.getElementById("tracker");
-      const cumulativeTracker = document.getElementById("cumulativeTracker");
+      .lds-ellipsis div {
+        position: absolute;
+        top: 15px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: currentColor;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+      }
 
-      fetch("https://api.ipify.org?format=json").then(async (response) => {
-        const data = await response.json();
-        const ip = data?.ip;
-        if (ip) {
-          const diff = ip ? `Hi ${ip}` : "Hi";
-          const finalText = `${diff}`;
+      .lds-ellipsis div:nth-child(1) {
+        left: 8px;
+        animation: lds-ellipsis1 0.6s infinite;
+      }
 
-          document.title = finalText;
-          textElement.textContent = finalText;
+      .lds-ellipsis div:nth-child(2) {
+        left: 8px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
 
-          tracker.onload = function () {
-            document.getElementById("loading").remove();
-            tracker.classList.remove("hidden");
-            tracker.classList.add("fade");
-          };
-          tracker.src = `https://profile-counter.glitch.me/tracker_v1000_${generateTrackerId(
-            ip
-          )}/count.svg`;
+      .lds-ellipsis div:nth-child(3) {
+        left: 32px;
+        animation: lds-ellipsis2 0.6s infinite;
+      }
+
+      .lds-ellipsis div:nth-child(4) {
+        left: 56px;
+        animation: lds-ellipsis3 0.6s infinite;
+      }
+
+      @keyframes lds-ellipsis1 {
+        0% {
+          transform: scale(0);
         }
-      });
 
-      cumulativeTracker.onload = () => {
-        cumulativeTracker.remove();
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes lds-ellipsis3 {
+        0% {
+          transform: scale(1);
+        }
+
+        100% {
+          transform: scale(0);
+        }
+      }
+
+      @keyframes lds-ellipsis2 {
+        0% {
+          transform: translate(0, 0);
+        }
+
+        100% {
+          transform: translate(24px, 0);
+        }
+      }
+    </style>
+
+    <style>
+      .fade {
+        opacity: 0;
+        animation-name: shownum;
+        animation-duration: 0.75s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+      }
+
+      .fade-slow {
+        opacity: 0;
+        animation-name: shownum;
+        animation-duration: 0.5s;
+        animation-delay: 0s;
+        animation-fill-mode: forwards;
+      }
+
+      @keyframes shownum {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      .ok {
+        position: absolute;
+        opacity: 0.01;
+        color: black;
+        z-index: -1;
+      }
+
+      #description {
+        text-align: center;
+        margin: 0;
+        font-size: small;
+      }
+    </style>
+
+    <script>
+      document.addEventListener("contextmenu", (event) =>
+        event.preventDefault()
+      );
+
+      const generateTrackerId = (ip) => {
+        return ip ? ip.replaceAll(".", "_") : "";
       };
-      cumulativeTracker.src =
-        "https://profile-counter.glitch.me/tracker_v1000/count.svg";
-    };
-  </script>
-</head>
 
-<body>
-  <div class="items fade-slow">
-    <h2 id="text">&nbsp;</h2>
-    <img id="tracker" class="hidden" style="opacity: 0" />
-    <div id="loading" class="lds-ellipsis">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
+      window.onload = () => {
+        const elements = document.getElementsByClassName("element");
+        for (const element of elements) {
+          element.classList.add("ok");
+        }
+
+        const textElement = document.getElementById("text");
+        const tracker = document.getElementById("tracker");
+        const cumulativeTracker = document.getElementById("cumulativeTracker");
+        const description = document.getElementById("description");
+
+        fetch("https://api.ipify.org?format=json").then(async (response) => {
+          const data = await response.json();
+          const ip = data?.ip;
+          if (ip) {
+            const diff = ip ? `Hi ${ip}` : "Hi";
+            const finalText = `${diff}`;
+
+            textElement.textContent = finalText;
+
+            tracker.onload = function () {
+              document.getElementById("loading").remove();
+              description.classList.remove('hidden2');
+              tracker.classList.remove("hidden");
+              tracker.classList.add("fade");
+            };
+            tracker.src = `https://profile-counter.glitch.me/tracker_v10000_${generateTrackerId(
+              ip
+            )}/count.svg`;
+          }
+        });
+
+        cumulativeTracker.onload = () => {
+          cumulativeTracker.remove();
+        };
+        cumulativeTracker.src =
+          "https://profile-counter.glitch.me/tracker_v10000/count.svg";
+      };
+    </script>
+  </head>
+
+  <body>
+    <div class="element">
+      <h1 class="no-select">Kyle Saburao</h1>
+      <p class="no-select">This is a website about Kyle Saburao</p>
+      <p class="no-select">Canada</p>
     </div>
-  </div>
-  <img id="cumulativeTracker" width="0" height="0" class="hidden" />
-</body>
 
+    <div class="items fade-slow">
+      <h2 id="text" class="no-select">&nbsp;</h2>
+      <p id="description" class="no-select hidden2">You've been here this many times:</p>
+      <img id="tracker" class="hidden no-select" style="opacity: 0" />
+      <div id="loading" class="lds-ellipsis no-select">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <img id="cumulativeTracker" width="0" height="0" class="hidden no-select" />
+  </body>
 </html>
