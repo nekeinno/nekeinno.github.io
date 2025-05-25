@@ -182,6 +182,14 @@
       };
 
       window.onload = () => {
+        const loadTime = (new Date()).toLocaleString([], {timeZone: "UTC"});
+        const preload = document.getElementById("pre");
+        preload.innerText = `${loadTime} UTC`;
+
+        for (const element of document.getElementsByClassName("ok")) {
+          element.classList.add("hidden2");
+        };
+
         const elements = document.getElementsByClassName("element");
         for (const element of elements) {
           element.classList.add("ok");
@@ -203,7 +211,7 @@
 
             tracker.onload = function () {
               document.getElementById("loading").remove();
-              description.classList.remove('hidden2');
+              description.classList.remove("hidden2");
               tracker.classList.remove("hidden");
               tracker.classList.add("fade");
             };
@@ -226,12 +234,13 @@
     <div class="element">
       <h1 class="no-select">Kyle Saburao</h1>
       <p class="no-select">This is a website about Kyle Saburao</p>
-      <p class="no-select">Canada</p>
+      <p id="pre" class="no-select" />
     </div>
 
     <div class="items fade-slow">
       <h2 id="text" class="no-select">&nbsp;</h2>
-      <p id="description" class="no-select hidden2">You've been here this many times:</p>
+      <p id="description" class="no-select hidden2">Your visits:</p>
+      <p class="ok no-select">REDACTED</p>
       <img id="tracker" class="hidden no-select" style="opacity: 0" />
       <div id="loading" class="lds-ellipsis no-select">
         <div></div>
